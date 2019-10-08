@@ -1,5 +1,7 @@
+import _ from 'lodash';
 function test(){
   let r = 12
-  console.log(r)
+  let s = _.join(['Hello','webpack'], ' ')
+  console.log(r+s)
 }
 document.write("It works.");

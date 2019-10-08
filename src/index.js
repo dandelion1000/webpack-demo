@@ -1,15 +1,25 @@
-import _ from 'lodash';
-import  './style.css'
-import Icon from './cfcc@3x.png'
-import Data from './data.xml'
-function component(){
+// import _ from 'lodash';
+// import  './style.css'
+// import Icon from './cfcc@3x.png'
+// import Data from './data.xml'
+// function getComponent(){
+//   var element = document.createElement('div');
+//   element.innerHTML = _.join(['Hello','webpack'], ' ')
+//   return import(/* webpackChunkName:'loadash'*/ 'lodash').then(_=>{
+//     var element = document.createElement('div')
+//     element.innerHTML = _.join(['hello','webpack1'],'')
+//     return element
+//   }).catch(error=>'an error occurred while loading the component')
+// }
+// getComponent().then(component=>{
+//   document.body.appendChild(component)
+// })
+async function getComponent(){
   var element = document.createElement('div');
-  element.innerHTML = _.join(['Hello','webpack'], ' ')
-  element.classList.add('hello')
-  var myIcon = new Image();
-  myIcon.src = Icon
-  element.appendChild(myIcon)
-  console.log(Data)
+  const _  = await import(/*webpackChunkName:"lodash"*/ 'lodash');
+  element.innerHTML = _.join(['hello','webpack'],' ')
   return element
 }
-document.body.appendChild(component())
+getComponent().then(component =>{
+  document.body.appendChild(component)
+})

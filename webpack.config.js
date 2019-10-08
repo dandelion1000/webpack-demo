@@ -1,9 +1,31 @@
 const path = require('path');
+const webpack = require('webpack');
+const HTMLWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
-  entry:'./src/index.js',
+  entry:{
+    index:'./src/index2.js',
+    // another:'./src/runoob1.js'
+  },
+  plugins:[
+    new HTMLWebpackPlugin({
+      title:'Code spliting'
+    }),
+  ],
+  optimization:{
+    splitChunks:{
+      cacheGroups: {
+        commons: {
+            name: "commons",
+            chunks: "initial",
+            minChunks: 2
+        }
+    }
+    }
+  },
   output:{
     path:path.resolve(__dirname, 'dist'),
-    filename:'bundle.js'
+    chunkFilename:'[name].bundle.js',
+    filename:'[name].bundle.js'
   },
   module:{
     rules: [
